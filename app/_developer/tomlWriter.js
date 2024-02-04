@@ -1,6 +1,7 @@
 import toml from "@iarna/toml";
 import "dotenv/config";
 import fs from "fs";
+import path from "path";
 
 /**
  * @typedef { import("@/_developer/types/toml.js").AppConfig} Config
@@ -44,8 +45,8 @@ if (
 ) {
   config.app_proxy = {};
   config.app_proxy.url = `${process.env.SHOPIFY_APP_URL}/api/proxy_route`;
-  config.app_proxy.prefix = "app_prefix";
-  config.app_proxy.subpath = "apps";
+  config.app_proxy.prefix = process.env.APP_PROXY_PREFIX;
+  config.app_proxy.subpath = process.env.APP_PROXY_SUBPATH;
 }
 
 // PoS
@@ -59,11 +60,11 @@ config.build = {};
 config.build.include_config_on_deploy = true;
 
 //Write to toml
-
 let str = toml.stringify(config);
 str = "# Avoid writing to toml directly. Use your .env file instead\n\n" + str;
 
-fs.writeFileSync(`${process.cwd()}/shopify.app.toml`, str, (err) => {
+const dirPath = path.join(process.cwd(), "..");
+fs.writeFileSync(path.join(dirPath, "shopify.app.toml"), str, (err) => {
   if (err) {
     console.log("An error occured while writing to file", e);
     return;

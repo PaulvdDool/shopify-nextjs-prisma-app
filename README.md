@@ -2,7 +2,7 @@
 
 An embedded app starter template to get up and ready with Shopify app development with Next.js and Prisma.
 
-I've included [notes](/docs/NOTES.md) on this repo which goes over the repo on why certain choices were made.
+I've included [notes](/app/docs/NOTES.md) on this repo which goes over the repo on why certain choices were made.
 
 ## Video
 
@@ -28,6 +28,7 @@ Building with Express and React was great but eventually there comes a time wher
 
 ## Notes
 
-- Refer to [SETUP](/docs/SETUP.md)
-- The project comes with snippets to speed up development. Refer to [Snippets](/docs/SNIPPETS.md).
-- App Bridge CDN migration guide is available [here](/docs/migration/app-bridge-cdn.md)
+- Refer to [SETUP](/app/docs/SETUP.md)
+- The project comes with snippets to speed up development. Refer to [Snippets](/app/docs/SNIPPETS.md).
+- `NEW` Migrate to new project structure
+- `NEW` Migrate to new auth

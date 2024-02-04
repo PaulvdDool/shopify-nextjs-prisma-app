@@ -1,2 +1,36 @@
-# Run `npm run setup` or `bun run setup` after filling out your .env to get started.
-# Alternatively, read `docs/SETUP.md`
+# Avoid writing to toml directly. Use your .env file instead
+
+name = "Heura's Test App"
+handle = "heuras-test-app"
+client_id = "bec6318eeaa2742e438f5e22aa8c81dd"
+application_url = "https://cc0d-220-158-178-166.ngrok-free.app"
+embedded = true
+
+[auth]
+redirect_urls = [
+  "https://cc0d-220-158-178-166.ngrok-free.app/api/auth/tokens",
+  "https://cc0d-220-158-178-166.ngrok-free.app/api/auth/callback"
+]
+
+[access_scopes]
+scopes = "write_content,write_products"
+use_legacy_install_flow = false
+
+[webhooks]
+api_version = "2024-01"
+
+  [webhooks.privacy_compliance]
+  customer_data_request_url = "https://cc0d-220-158-178-166.ngrok-free.app/api/gdpr/customers_data_request"
+  customer_deletion_url = "https://cc0d-220-158-178-166.ngrok-free.app/api/gdpr/customers_redact"
+  shop_deletion_url = "https://cc0d-220-158-178-166.ngrok-free.app/api/gdpr/shop_redact"
+
+[app_proxy]
+url = "https://cc0d-220-158-178-166.ngrok-free.app/api/proxy_route"
+prefix = "apps"
+subpath = "custom-app"
+
+[pos]
+embedded = false
+
+[build]
+include_config_on_deploy = true

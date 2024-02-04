@@ -63,8 +63,8 @@
  * App proxy
  * @typedef {Object} AppProxyConfig
  * @property {string} url - The base URL for the app proxy.
- * @property {('apps' | 'a' | 'community' | 'tools' )} subpath - The subpath at which the app proxy is accessible.
- * @property {string} prefix - The prefix used for the app proxy routes.
+ * @property {string} subpath - The subpath at which the app proxy is accessible.
+ * @property {('apps' | 'a' | 'community' | 'tools' )} prefix - The prefix used for the app proxy routes.
  */ z;
 
 /**

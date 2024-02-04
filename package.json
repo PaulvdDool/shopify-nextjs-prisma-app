@@ -1,56 +1,9 @@
 {
   "name": "shopify-nextjs-prisma-app",
-  "version": "0.0.1",
-  "type": "module",
-  "author": {
-    "name": "Harshdeep Singh Hura",
-    "url": "https://harshdeephura.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kinngh/shopify-nextjs-prisma-app.git"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "pretty": "prettier --write ./",
-    "update": "ncu -u",
-    "ngrok:auth": "ngrok authtoken <auth-token-goes-here>",
-    "ngrok": "ngrok http 3000",
-    "-----> Shopify <-----": "",
-    "g:install": "npm i -g @shopify/app@latest @shopify/cli@latest",
-    "shopify": "shopify",
-    "update:app": "node _developer/tomlWriter.js; shopify app deploy",
-    "update:url": "node _developer/updateDashboard.js",
-    "-----> Database <-----": "",
-    "pg:create": "mkdir database; pg_ctl -D database init",
-    "pg:start": "pg_ctl -D database start",
-    "pg:stop": "pg_ctl -D database stop",
-    "-----> Prisma <-----": "",
-    "prisma": "npx prisma",
-    "prisma:push": "npx prisma db push",
-    "prisma:pull": "npx prisma db pull",
-    "-----> Reserved Scripts <-----": "",
-    "prepare": "npx prisma generate"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.8.1",
-    "@shopify/polaris": "^12.11.1",
-    "@shopify/shopify-api": "^9.0.2",
-    "cryptr": "^6.3.0",
-    "next": "14.1.0",
-    "next-api-middleware": "^3.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@iarna/toml": "^2.2.5",
-    "@shopify/cli-kit": "^3.54.0",
-    "dotenv": "^16.4.1",
-    "ngrok": "^5.0.0-beta.2",
-    "npm-check-updates": "^16.14.14",
-    "prettier": "^3.2.4",
-    "prisma": "^5.8.1"
+    "deploy": "shopify app deploy"
   }
 }

@@ -1,2 +1,2 @@
-# Necessary for Shopify CLI 3.0 to function as expected. 
-# Please do not delete unless you know what you're doing.
+# Run `npm run setup` or `bun run setup` after filling out your .env to get started.
+# Alternatively, read `docs/SETUP.md`

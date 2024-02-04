@@ -16,13 +16,13 @@
     "start": "next start",
     "pretty": "prettier --write ./",
     "update": "ncu -u",
-    "update:url": "node _developer/updateDashboard.js",
     "ngrok:auth": "ngrok authtoken <auth-token-goes-here>",
     "ngrok": "ngrok http 3000",
-    "cloudflare": "cloudflared tunnel --url localhost:3000",
     "-----> Shopify <-----": "",
     "g:install": "npm i -g @shopify/app@latest @shopify/cli@latest",
     "shopify": "shopify",
+    "update:app": "node _developer/tomlWriter.js; shopify app deploy",
+    "update:url": "node _developer/updateDashboard.js",
     "-----> Database <-----": "",
     "pg:create": "mkdir database; pg_ctl -D database init",
     "pg:start": "pg_ctl -D database start",
@@ -45,6 +45,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@iarna/toml": "^2.2.5",
     "@shopify/cli-kit": "^3.54.0",
     "dotenv": "^16.4.1",
     "ngrok": "^5.0.0-beta.2",

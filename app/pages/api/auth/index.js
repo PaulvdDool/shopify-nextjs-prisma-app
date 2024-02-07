@@ -17,24 +17,14 @@ const handler = async (req, res) => {
       return res.send("No shop provided");
     }
 
-    if (req.query.embedded === "1") {
-      const shop = shopify.utils.sanitizeShop(req.query.shop);
-      const queryParams = new URLSearchParams({
-        ...req.query,
-        shop,
-        redirectUri: `/api/auth?shop=${shop}&host=${req.query.host}`,
-      }).toString();
-
-      return res.redirect(`/exitframe/${queryParams}`);
-    }
-
     return await shopify.auth.begin({
-      shop: req.query.shop,
+      shop: shopify.utils.sanitizeShop(req.query.shop),
       callbackPath: `/api/auth/tokens`,
       isOnline: true,
       rawRequest: req,
       rawResponse: res,
     });
+    
   } catch (e) {
     console.error(`---> Error at /auth`, e);
     const { shop } = req.query;

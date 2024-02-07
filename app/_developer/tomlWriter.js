@@ -10,18 +10,22 @@ import path from "path";
 /** @type {Config} */
 let config = {};
 
+let appUrl = process.env.SHOPIFY_APP_URL;
+if (appUrl.endsWith("/")) {
+  appUrl = appUrl.slice(0, -1);
+}
 // Globals
 config.name = process.env.APP_NAME;
 config.handle = process.env.APP_HANDLE;
 config.client_id = process.env.SHOPIFY_API_KEY;
-config.application_url = process.env.SHOPIFY_APP_URL;
+config.application_url = appUrl;
 config.embedded = true;
 
 // Auth
 config.auth = {};
 config.auth.redirect_urls = [
-  `${process.env.SHOPIFY_APP_URL}/api/auth/tokens`,
-  `${process.env.SHOPIFY_APP_URL}/api/auth/callback`,
+  `${appUrl}/api/auth/tokens`,
+  `${appUrl}/api/auth/callback`,
 ];
 //Scopes
 config.access_scopes = {};
@@ -34,9 +38,9 @@ config.webhooks.api_version = process.env.SHOPIFY_API_VERSION;
 
 // GDPR URLs
 config.webhooks.privacy_compliance = {};
-config.webhooks.privacy_compliance.customer_data_request_url = `${process.env.SHOPIFY_APP_URL}/api/gdpr/customers_data_request`;
-config.webhooks.privacy_compliance.customer_deletion_url = `${process.env.SHOPIFY_APP_URL}/api/gdpr/customers_redact`;
-config.webhooks.privacy_compliance.shop_deletion_url = `${process.env.SHOPIFY_APP_URL}/api/gdpr/shop_redact`;
+config.webhooks.privacy_compliance.customer_data_request_url = `${appUrl}/api/gdpr/customers_data_request`;
+config.webhooks.privacy_compliance.customer_deletion_url = `${appUrl}/api/gdpr/customers_redact`;
+config.webhooks.privacy_compliance.shop_deletion_url = `${appUrl}/api/gdpr/shop_redact`;
 
 // App Proxy
 if (
@@ -44,7 +48,7 @@ if (
   process.env.APP_PROXY_SUBPATH?.length > 1
 ) {
   config.app_proxy = {};
-  config.app_proxy.url = `${process.env.SHOPIFY_APP_URL}/api/proxy_route`;
+  config.app_proxy.url = `${appUrl}/api/proxy_route`;
   config.app_proxy.prefix = process.env.APP_PROXY_PREFIX;
   config.app_proxy.subpath = process.env.APP_PROXY_SUBPATH;
 }

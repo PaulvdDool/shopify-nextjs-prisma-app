@@ -7,51 +7,70 @@ const setupCheck = () => {
     SHOPIFY_API_VERSION: apiVersion,
     ENCRYPTION_STRING: encString,
     DATABASE_URL: databaseURL,
+    APP_NAME: appName,
+    APP_HANDLE: appHandle,
+    APP_PROXY_PREFIX: proxyPrefix,
+    APP_PROXY_SUBPATH: proxySubpath,
   } = process.env;
 
-  let errorCount = 0;
-
   if (typeof apiKey === "undefined") {
-    console.error("---> API Key is undefined.");
-    errorCount++;
+    throw Error("---> API Key is undefined.");
   }
   if (typeof apiSecret === "undefined") {
-    console.error("---> API Secret is undefined.");
-    errorCount++;
+    throw Error("---> API Secret is undefined.");
   }
   if (typeof apiScopes === "undefined") {
-    console.error("---> API Scopes are undefined.");
-    errorCount++;
+    throw Error("---> API Scopes are undefined.");
   }
   if (typeof appUrl === "undefined") {
-    console.error("---> App URL is undefined.");
-    errorCount++;
+    throw Error("---> App URL is undefined.");
   } else if (!appUrl.includes("https://")) {
     console.error("---> Please use HTTPS for SHOPIFY_APP_URL.");
   }
   if (typeof apiVersion === "undefined") {
-    console.error("---> API Version is undefined.");
-    errorCount++;
+    throw Error("---> API Version is undefined.");
   }
   if (typeof encString === "undefined") {
-    console.error("---> Encryption String is undefined.");
-    errorCount++;
+    throw Error("---> Encryption String is undefined.");
   }
 
   if (typeof databaseURL === "undefined") {
     console.error("---> Database string is undefined.");
-    errorCount++;
   }
 
-  if (errorCount > 4) {
-    console.error(
-      "\n\n\n\n--> .env file is either not reachable or not setup properly. Please refer to .env.example file for the setup.\n\n\n\n"
+  if (typeof appName === "undefined") {
+    throw Error("---> App Name is undefined.");
+  }
+  if (typeof appHandle === "undefined") {
+    throw Error("---> App Handle is undefined.");
+  }
+  if (appHandle.includes(" ")) {
+    throw Error("---> Handle must be encoded and cannot contain spaces");
+  }
+
+  if (typeof proxySubpath === "undefined") {
+    console.warn(
+      "---> App Proxy subpath is undefined. Make sure your app doesn't use App proxy"
     );
+  } else {
+    if (typeof proxyPrefix === "undefined") {
+      console.error("---> App proxy prefix is undefined.");
+      errorCount++;
+    }
+    switch (proxyPrefix) {
+      case "apps":
+      case "a":
+      case "community":
+      case "tools":
+        break;
+      default:
+        throw Error(
+          "Invalid App proxy prefix, please make sure the value is either of these:\napps\na\ncommunity\ntools"
+        );
+    }
   }
 
-  if (errorCount == 0) {
-    console.log("--> Setup checks passed successfully.");
-  }
+  console.log("--> Setup checks passed successfully.");
 };
 
 export default setupCheck;

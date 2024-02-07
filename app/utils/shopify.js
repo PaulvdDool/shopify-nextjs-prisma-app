@@ -15,6 +15,9 @@ const shopify = shopifyApi({
   isEmbeddedApp: true,
   logger: { level: isDev ? 0 : 0 }, //Error = 0,Warning = 1,Info = 2,Debug = 3
   // logger: { level: LogSeverity.Debug, httpRequests: true }, //For insane levels of debugging
+  future: {
+    unstable_tokenExchange: true,
+  },
 });
 
 /*

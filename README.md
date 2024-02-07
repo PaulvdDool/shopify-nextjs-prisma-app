@@ -1,3 +1,7 @@
+# Do not use this branch, this is a backup of my dev branch and things will change
+
+---
+
 # Shopify Next.js x Prisma Boilerplate
 
 An embedded app starter template to get up and ready with Shopify app development with Next.js and Prisma.
